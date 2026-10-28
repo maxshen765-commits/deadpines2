@@ -521,7 +521,7 @@ kbd {
   function newGame() {
     var s = {
       phase: 'day', timer: DAY_LEN, night: 1, survived: 0, dark: 0, time: 0, shake: 0,
-      player: { x: WORLD_W / 2, y: WORLD_H / 2, hp: 100, max: 100, dmg: 100, reach: 1, spd: 1, atkRate: 1, chop: 1, fuel: 1, fire: 1, wallHp: 1, regen: 0, upgrades: [], revive: 0, bombs: 0, invuln: 0, stone: 0, weapon: 0, sel: 'wood', wood: 6, ang: 0, fx: 1, fy: 0, atkCd: 0, atkVis: 0, hurt: 0, chopCd: 0, kills: 0, swing: 0 },
+      player: { x: WORLD_W / 2, y: WORLD_H / 2, hp: 10000, max: 10000, dmg: 100, reach: 1, spd: 1, atkRate: 1, chop: 1, fuel: 1, fire: 1, wallHp: 100, regen: 0, upgrades: [], revive: 0, bombs: 0, invuln: 0, stone: 0, weapon: 0, sel: 'wood', wood: 6, ang: 0, fx: 1, fy: 0, atkCd: 0, atkVis: 0, hurt: 0, chopCd: 0, kills: 0, swing: 0 },
       trees: [], rocks: [], meds: [], fires: [], walls: [], zombies: [], shots: [], blasts: [], beams: [], parts: [], earned: 0, boss: null, bossDone: false, endless: false, newBest: false,
       spawnLeft: 0, spawnInt: 3, spawnT: 0
     };
@@ -698,9 +698,9 @@ kbd {
   }
 
   var WALLS = {
-    wood: { wood: 2, stone: 0, hp: 50, name: 'Barricade', col: '#8a6a43' },
-    stone: { wood: 0, stone: 3, hp: 160, name: 'Stone wall', col: '#9aa0a3' },
-    gate: { wood: 2, stone: 4, hp: 110, name: 'Gate', col: '#b9a37a' }
+    wood: { wood: 2, stone: 0, hp: 5000, name: 'Barricade', col: '#8a6a43' },
+    stone: { wood: 0, stone: 3, hp: 16000, name: 'Stone wall', col: '#9aa0a3' },
+    gate: { wood: 2, stone: 4, hp: 11000, name: 'Gate', col: '#b9a37a' }
   };
   function canBuild(p, kind) { var w = WALLS[kind]; return p.wood >= w.wood && p.stone >= w.stone; }
   function costText(w) {
@@ -800,7 +800,7 @@ kbd {
     if (!paused || !pickOffer[i]) return;
     var it = pickOffer[i], p = state.player;
     it.fn(p); p.upgrades.push(it.name);
-    p.dmg = Math.min(p.dmg, 6); p.max = Math.min(p.max, 400); p.hp = Math.min(p.hp, p.max); p.regen = Math.min(p.regen, 9); p.chop = Math.min(p.chop, 6); p.wallHp = Math.min(p.wallHp, 6); p.spd = Math.min(p.spd, 1.9); p.atkRate = Math.min(p.atkRate, 3); p.reach = Math.min(p.reach, 2); p.fuel = Math.max(p.fuel, 0.25); p.fire = Math.min(p.fire, 2.2);
+    p.dmg = Math.min(p.dmg, 100); p.max = Math.min(p.max, 10000); p.hp = Math.min(p.hp, p.max); p.regen = Math.min(p.regen, 9); p.chop = Math.min(p.chop, 6); p.wallHp = Math.min(p.wallHp, 100);
     pickOffer = []; paused = false;
     $('pick').hidden = true;
     banner('Day ' + state.night, 'Took ' + it.name + '. The trees have grown back.', 3400);

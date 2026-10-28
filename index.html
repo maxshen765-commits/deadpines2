@@ -136,6 +136,15 @@ body {
   text-wrap: balance;
 }
 .card h1 em { color: var(--blood); font-style: normal; }
+.card .milanShoutout {
+  margin: 8px 0 0;
+  font-family: var(--f-display);
+  font-size: 18px;
+  line-height: 1.2;
+  text-align: center;
+  color: var(--ember);
+  letter-spacing: 0.04em;
+}
 .card p { margin: 10px 0 0; line-height: 1.6; color: rgba(236,228,208,0.82); }
 .keys { margin: 16px 0 0; padding: 0; list-style: none; display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; font-size: 12px; }
 .keys li { display: contents; }
@@ -421,6 +430,7 @@ kbd {
   <div id="screen">
     <div class="card">
       <h1 id="sTitle">Dead <em>Pines</em></h1>
+      <h2 class="milanShoutout" id="milanShoutout">Shoutout Milan</h2>
       <p id="sText">You crashed deep in the forest. By day the woods are quiet. After dark, the dead walk. Hold out for five nights until help arrives.</p>
       <p class="coinline" id="sLearn">New here? Open the rule book (top right) to learn how to play.</p>
       <p class="coinline" id="sCoins"></p>
@@ -1043,6 +1053,7 @@ kbd {
     var s = state;
     clearRun();
     $('screen').hidden = false;
+    $('milanShoutout').hidden = true;
     var h = $('sTitle');
     if (won) {
       h.innerHTML = '';
@@ -2276,8 +2287,8 @@ kbd {
     running = false; paused = false;
     $('pause').hidden = true; $('pick').hidden = true; $('banner').className = '';
     $('sTitle').innerHTML = TITLE_HTML; $('sText').textContent = START_TEXT;
-    $('sBtn').textContent = 'Enter the forest'; $('sEndlessLabel').textContent = 'Endless mode';
-    refreshMenu(); $('screen').hidden = false; $('sBtn').focus();
+    $('milanShoutout').hidden = false;
+    $('sBtn').textContent = 'Enter the forest';
   }
   function confirmClick(btn, label, fn) {
     var timer = null;
